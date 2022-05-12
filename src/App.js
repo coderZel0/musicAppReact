@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import {React,useState,useEffect} from 'react';
+import Player from './components/Player';
 import './App.css';
 
+
+
 function App() {
+  const [songs] = useState([
+    {
+      title:"FuryWeekend-Dancekiller",
+      artist:"artist1",
+      image:"images/image",
+      audio:"../audio/FuryWeekend-Dancekiller.mp3"
+    },
+    {
+      title:"Fury Weekend - Euphoria",
+      artist:"artist2",
+      image:"images/image",
+      audio:"../audio/Fury Weekend - Euphoria.mp3"
+    },
+    {
+      title:"Scandroid - Onyx",
+      artist:"artist3",
+      image:"images/image",
+      audio:"../audio/Scandroid - Onyx.mp3"
+    }
+  ]);
+
+  const [index,setIndex] = useState(0);
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+      <Player index={index} setIndex={setIndex} songs={songs}/>
     </div>
   );
 }

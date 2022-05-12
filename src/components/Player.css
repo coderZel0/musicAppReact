@@ -1,0 +1,10 @@
+.player{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background:linear-gradient(to left,rgb(85, 216, 172),rgb(130, 81, 245));
+    width:35%;
+    height:70vh;
+    border-radius:10px;
+}
