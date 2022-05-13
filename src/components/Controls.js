@@ -50,7 +50,7 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
         setRepeat(state=>!state);
     }
     useEffect(()=>{
-        const {with,height} = window;
+        const {width,height} = window;
     },[])
 
     return (
