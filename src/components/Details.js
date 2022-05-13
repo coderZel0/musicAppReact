@@ -4,7 +4,7 @@ import './Details.css';
 
 const Details = ({index,songs,play})=>{
 
-    const {title,image,artist} = songs[index];
+    const {title,artist} = songs[index];
     useEffect(()=>{
         console.log(play)
     },[])

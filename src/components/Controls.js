@@ -5,7 +5,7 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
    
     //const {audio}=songs[index];
     const volRef = useRef(null);
-    const [width,setWidth] = useState(1);
+   
 
     const handlePlay =()=>{
         setPlay(!play);
@@ -36,7 +36,7 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
         const clickX = e.nativeEvent.offsetX;
         //console.log(clickX);
         //console.log(volRef.current.clientWidth)
-        const vol = (clickX/volRef.current.clientWidth);
+        let vol = (clickX/volRef.current.clientWidth);
         //console.log(vol);
         if(vol<0){
             vol=0;
@@ -49,9 +49,9 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
     const Repeat=()=>{
         setRepeat(state=>!state);
     }
-    useEffect(()=>{
-        const {width,height} = window;
-    },[])
+    //useEffect(()=>{
+        //const {width,height} = window;
+    //},[])
 
     return (
         <div className='controls'>
