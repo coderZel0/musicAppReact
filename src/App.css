@@ -9,5 +9,11 @@
   
 }
 
+@media screen and (max-height:667px){
+  .App{
+    min-width:665px;
+  }
+}
+
 
 

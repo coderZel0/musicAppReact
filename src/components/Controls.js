@@ -49,9 +49,7 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
     const Repeat=()=>{
         setRepeat(state=>!state);
     }
-    //useEffect(()=>{
-        //const {width,height} = window;
-    //},[])
+    
 
     return (
         <div className='controls'>
@@ -68,7 +66,7 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
                     <button className='prev' onClick={()=>{handlePrev()}}><i className='fa-solid fa-backward-step'></i></button>
                 </div>
                 <div className='button'>
-                    <button className="play" onClick={()=>{handlePlay()}}><i className='fa fa-play'></i></button>
+                    <button className="play" onClick={()=>{handlePlay()}}><i className={`${(play)?'fa fa-pause':'fa fa-play'}`}></i></button>
                 </div>
                 <div className='button'>
                     <button className='next' onClick={()=>{handleNext()}}><i className="fa fa-step-forward"></i></button>
