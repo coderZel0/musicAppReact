@@ -9,9 +9,10 @@
   
 }
 
-@media screen and (max-height:667px){
-  .App{
-    min-width:665px;
+@media screen and (max-width:667px){
+  .player{
+    width:100%;
+    height:100vh;
   }
 }
 
