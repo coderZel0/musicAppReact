@@ -96,6 +96,27 @@
     justify-content: center;
 }
 
+.playbar{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    height:10px;
+    top:0;
+    width:100%;
+    background:aqua;
+}
+.progress{
+    height:100%;
+    width:0;
+    background:linear-gradient(to right,rgb(243, 243, 62),rgb(245, 164, 57));
+}
+.barend{
+    width:10px;
+    height:13px;
+    background: rgb(141, 121, 121);
+}
+
 @media screen and (max-width:678px){
 
     i{
