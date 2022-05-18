@@ -1,11 +1,11 @@
 import {React,useEffect,useState,useRef} from 'react';
 import "./Control.css";
 
-const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,setRepeat})=>{
+const Controls = ({index,setTime,audioDuration,progress,setProgress,setIndex,songs,play,setPlay,volume,setVolume,repeat,setRepeat})=>{
    
     //const {audio}=songs[index];
     const volRef = useRef(null);
-   
+    const progressRef = useRef(null);
 
     const handlePlay =()=>{
         setPlay(!play);
@@ -49,13 +49,24 @@ const Controls = ({index,setIndex,songs,play,setPlay,volume,setVolume,repeat,set
     const Repeat=()=>{
         setRepeat(state=>!state);
     }
-    
+    const handleProgress =(e)=>{
+        const clickX = e.nativeEvent.offsetX;
+        const prog = (clickX/progressRef.current.clientWidth) * 100;
+        const currTime = (prog/100)*audioDuration;
+        console.log(audioDuration);
+        console.log(currTime);
+        
+        setTime(currTime);
+        setProgress(prog);
+    }
 
     return (
         <div className='controls'>
             <div className='layer'>
             </div>
-            <div className='playbar'> 
+            <div ref={progressRef} onClick={(e)=>{handleProgress(e)}} className='playbar'> 
+                <div style={{width:`${progress}%`}} className='progress'></div>
+                <div className='barend'></div>
             </div>
             <div className='lyricscontrol'>
                 <div onClick={()=>{Repeat()}} className='repeat center'><i className={(repeat)?'fas fa-repeat-1':'fa-solid fa-repeat'}></i></div>
