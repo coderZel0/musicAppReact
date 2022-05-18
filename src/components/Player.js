@@ -11,6 +11,9 @@ const Player =(props)=>{
     const [activeLyrics,setActive] = useState(false);
     const [volume,setVolume] = useState(1);
     const [repeat,setRepeat] = useState(false);
+    const [progress,setProgress]= useState(0);
+    const [audioDuration,setDuration] = useState(0);
+    const [currentAudioTime,setTime] = useState(0);
 
     const audioEL = useRef(null);
     //const song = new Audio();
@@ -55,16 +58,39 @@ const Player =(props)=>{
                 return index;
             });
         })
-        //return ()=>{audioEL.current.removeEventListener('ended',()=>console.log("removed"))};
+        
+        audioEL.current.addEventListener('timeupdate',()=>{
+            const prog = (audioEL.current.currentTime/audioEL.current.duration)*100;
+            setProgress(prog);
+            
+        })
+
+        return ()=>{audioEL.current.removeEventListener('ended',()=>console.log("removed"))
+                    audioEL.current.removeEventListener('timeupdate',()=>{setProgress(0);});
+                    
+        };
     },[])
     useEffect(()=>{
-        audioEL.current.volume = volume || 0.5;
+        audioEL.current.volume = volume ;
     },[volume])
+
+    useEffect(()=>{
+        audioEL.current.onloadedmetadata= ()=>{
+            console.log('loaded');
+            setDuration(audioEL.current.duration);
+            console.log(audioDuration);
+        };
+    },[index])
+
+    useEffect(()=>{
+        audioEL.current.currentTime = currentAudioTime; //currentAudioTime dont update width time
+    },[currentAudioTime])                               //it stores the value where you last clicked in progressbar
+
     return (
         <div className="player">
-            <audio ref={audioEL}></audio>
+            <audio ref={audioEL} preload="metadata"></audio>
             <Details index={index} songs={songs} play={play}/>
-            <Controls repeat={repeat} setRepeat={setRepeat} volume={volume} setVolume={setVolume} index={index} setIndex={setIndex} songs={songs} play={play} setPlay={setPlay}/>
+            <Controls setTime={setTime} audioDuration={audioDuration} progress={progress} setProgress={setProgress} repeat={repeat} setRepeat={setRepeat} volume={volume} setVolume={setVolume} index={index} setIndex={setIndex} songs={songs} play={play} setPlay={setPlay}/>
         </div>
     )
 }
