@@ -2,7 +2,8 @@ import {React,useState} from 'react';
 import Player from './components/Player';
 import './App.css';
 
-
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
 
 function App() {
   const [songs] = useState([

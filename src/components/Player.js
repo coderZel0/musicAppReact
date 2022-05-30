@@ -22,6 +22,18 @@ const Player =(props)=>{
         //setPlay(true);
         audioEL.current.play();
     }
+    //Load lyrics
+
+    useEffect(()=>{
+        const artist = 'eminem';
+        const song = 'godzilla';
+        fetch(`http://localhost:5000/lyrics?artist=${artist}&&song=${song}`,{
+            method:'GET',
+            headers:{'Content-Type':'Application/json'},
+        })
+        .then(res=> res.json())
+        .then(res=>console.log(res))
+    },[])
 
     /*const getLyrics = async (artist,song)=>{
         const lyrics = await lyricsFinder(artist,song);
