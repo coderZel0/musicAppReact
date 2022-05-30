@@ -8,7 +8,7 @@ const Player =(props)=>{
     const {index,setIndex,songs} = props;
     const [play,setPlay] = useState(false);
     const [lyrics,setLyrics] = useState('');
-    const [activeLyrics,setActive] = useState(false);
+    const [activeLyrics,setActive] = useState(true);
     const [volume,setVolume] = useState(1);
     const [repeat,setRepeat] = useState(false);
     const [progress,setProgress]= useState(0);
@@ -23,6 +23,11 @@ const Player =(props)=>{
         audioEL.current.play();
     }
 
+    /*const getLyrics = async (artist,song)=>{
+        const lyrics = await lyricsFinder(artist,song);
+        return lyrics;
+    }*/
+
     useEffect(()=>{
        
         audioEL.current.pause();
@@ -31,6 +36,13 @@ const Player =(props)=>{
             playSong();
         }
         
+        //Lyrics
+        const artist = songs[index].artist;
+        const song = songs[index].audio;
+        const results = Client.songs.search(song);
+        const details = results[0];
+        console.log(details);
+        //if(lyrics) setLyrics(lyrics);
 
     },[index])
 

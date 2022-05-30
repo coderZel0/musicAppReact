@@ -10,12 +10,12 @@
     padding:10px;
     margin:10px 0px;
     font-family:'Roboto Flex',sans-serif;
-    
 }
 
 .image{
     width:80%;
     height:70%;
+    
 }
 
 img{
@@ -38,7 +38,19 @@ img{
     color:bisque;
     text-shadow:2px 2px 4px rgb(112, 112, 240);
 }
- 
+
+.player{
+    position:relative;
+}
+.lyrics-layer{
+    position: absolute;
+    top:0;
+    width:100%;
+    height: 76%;
+    background-color: black;
+    opacity: 0.9;
+    z-index:1;
+}
 
 
 @keyframes anima{
