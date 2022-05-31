@@ -1,7 +1,7 @@
 import {React,useEffect,useState,useRef} from 'react';
 import "./Control.css";
 
-const Controls = ({index,setTime,audioDuration,progress,setProgress,setIndex,songs,play,setPlay,volume,setVolume,repeat,setRepeat})=>{
+const Controls = ({index,setActive,activeLyrics,setTime,audioDuration,progress,setProgress,setIndex,songs,play,setPlay,volume,setVolume,repeat,setRepeat})=>{
    
     //const {audio}=songs[index];
     const volRef = useRef(null);
@@ -70,7 +70,7 @@ const Controls = ({index,setTime,audioDuration,progress,setProgress,setIndex,son
             </div>
             <div className='lyricscontrol'>
                 <div onClick={()=>{Repeat()}} className='repeat center'><i className={(repeat)?'fas fa-repeat-1':'fa-solid fa-repeat'}></i></div>
-                <div className='lyricsactive center'><i className='fa-solid fa-music'></i></div>
+                <div onClick={()=>setActive(!activeLyrics)} className='lyricsactive center'><i className={`fa-solid fa-music ${(activeLyrics)?'bloom':''}`}></i></div>
             </div>
             <div className='buttons'>
                 <div className='button'>

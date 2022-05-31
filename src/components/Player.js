@@ -8,7 +8,7 @@ const Player =(props)=>{
     const {index,setIndex,songs} = props;
     const [play,setPlay] = useState(false);
     const [lyrics,setLyrics] = useState('');
-    const [activeLyrics,setActive] = useState(true);
+    const [activeLyrics,setActive] = useState(false);
     const [volume,setVolume] = useState(1);
     const [repeat,setRepeat] = useState(false);
     const [progress,setProgress]= useState(0);
@@ -25,20 +25,26 @@ const Player =(props)=>{
     //Load lyrics
 
     useEffect(()=>{
-        const artist = 'eminem';
-        const song = 'godzilla';
+        setLyrics('');
+        const artist = songs[index].artist;
+        const song = songs[index].title;
         fetch(`http://localhost:5000/lyrics?artist=${artist}&&song=${song}`,{
             method:'GET',
             headers:{'Content-Type':'Application/json'},
         })
         .then(res=> res.json())
-        .then(res=>console.log(res))
-    },[])
+        .then(res=>{console.log(res)
+            if(res.lyrics){
+                setLyrics(res.lyrics)
+            }
+            else{
+                setLyrics("No Lyrics Found!")
+            }
+            
+        })
+        .catch(err=>console.log(err))
+    },[index])
 
-    /*const getLyrics = async (artist,song)=>{
-        const lyrics = await lyricsFinder(artist,song);
-        return lyrics;
-    }*/
 
     useEffect(()=>{
        
@@ -47,14 +53,6 @@ const Player =(props)=>{
             audioEL.current.src = songs[index].audio;
             playSong();
         }
-        
-        //Lyrics
-        const artist = songs[index].artist;
-        const song = songs[index].audio;
-        const results = Client.songs.search(song);
-        const details = results[0];
-        console.log(details);
-        //if(lyrics) setLyrics(lyrics);
 
     },[index])
 
@@ -113,8 +111,8 @@ const Player =(props)=>{
     return (
         <div className="player">
             <audio ref={audioEL} preload="metadata"></audio>
-            <Details index={index} songs={songs} play={play}/>
-            <Controls setTime={setTime} audioDuration={audioDuration} progress={progress} setProgress={setProgress} repeat={repeat} setRepeat={setRepeat} volume={volume} setVolume={setVolume} index={index} setIndex={setIndex} songs={songs} play={play} setPlay={setPlay}/>
+            <Details index={index} lyrics={lyrics} activeLyrics={activeLyrics} songs={songs} play={play}/>
+            <Controls setActive={setActive} activeLyrics={activeLyrics} setTime={setTime} audioDuration={audioDuration} progress={progress} setProgress={setProgress} repeat={repeat} setRepeat={setRepeat} volume={volume} setVolume={setVolume} index={index} setIndex={setIndex} songs={songs} play={play} setPlay={setPlay}/>
         </div>
     )
 }

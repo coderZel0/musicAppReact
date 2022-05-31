@@ -45,7 +45,8 @@
     border-radius: 50%;
 }
 .bloom{
-    box-shadow:5px 5px 5px 2px rgb(214, 83, 214);
+    box-shadow:5px 5px 5px 2px rgb(227, 236, 93);
+    color:yellow;
 }
 
 .vol-outer-container{

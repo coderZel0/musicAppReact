@@ -9,19 +9,19 @@ function App() {
   const [songs] = useState([
     {
       title:"FuryWeekend-Dancekiller",
-      artist:"artist1",
+      artist:"Ars Nikonov",
       image:"images/image",
       audio:"../audio/FuryWeekend-Dancekiller.mp3"
     },
     {
       title:"Fury Weekend - Euphoria",
-      artist:"artist2",
+      artist:"Ars Nikonov",
       image:"images/image",
       audio:"../audio/Fury Weekend - Euphoria.mp3"
     },
     {
       title:"Scandroid - Onyx",
-      artist:"artist3",
+      artist:"Klayton",
       image:"images/image",
       audio:"../audio/Scandroid - Onyx.mp3"
     }

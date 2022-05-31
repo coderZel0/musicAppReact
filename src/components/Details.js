@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import img from "../images/default.png";
 import './Details.css';
 
-const Details = ({index,songs,play,lyrics,acticeLyrics})=>{
+const Details = ({index,songs,play,lyrics,activeLyrics})=>{
 
     const {title,artist} = songs[index];
     useEffect(()=>{
-        if(!acticeLyrics) return;
+        if(!activeLyrics) return;
         const Length = lyrics.length;
     },[])
     return (
         <div className="details">
-            <div className={`lyrics-layer ${(acticeLyrics)?'show':''}`}>
+            <div className={`lyrics-layer ${(activeLyrics)?'':'show'}`}>
                 <div className="lyrics">
                     <p>{lyrics}</p>
                 </div>
